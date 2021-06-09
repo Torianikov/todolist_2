@@ -29,10 +29,13 @@ export const taskReducer = createReducer(
         ...state,
         arrTask:  state.arrTask.slice(0, index).concat(state.arrTask.slice(index + 1, state.arrTask.length)),
     })),
-    on(editTask, (state,{index, upadateTask}) =>({
+    on(editTask, (state,{index, upadateTask}) => {
+        const arr = [...state.arrTask];
+        arr[index] = upadateTask;
+        return {
         ...state,
-        arrTask: state.arrTask.map(item => item === state.arrTask[index] ? upadateTask : item)
-    }))
+        arrTask: arr
+    }})
 );
 
 export const featureSelector = createFeatureSelector<TaskState>('task');
