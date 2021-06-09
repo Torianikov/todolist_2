@@ -1,0 +1,11 @@
+<div class="container" #container>
+    <!-- <div class = 'task'>one task</div> -->
+    <div class ='task' *ngFor="let item of arrTask$ | async; let i = index">
+        <input value ={{item}} #val>
+            <button (click)='deleteTask(i)'>x</button>
+            <button (click)='edit(i, val.value)'>&#10003;</button>
+            </div>
+</div>
+<input type="text" placeholder="new task" [(ngModel)] = 'textNewTask'>
+<button (click)='add()'>add new task</button>
+<button (click)= 'clear()'>clear</button>
