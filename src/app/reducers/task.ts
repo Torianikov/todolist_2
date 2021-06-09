@@ -6,7 +6,7 @@ export const deleteTask = createAction('[TASK] delete task', props<{index: numbe
 export const editTask = createAction('[Task] edit task', props<{index: number, upadateTask: string}>());
 
 export interface TaskState{
-    arrTask: string[];
+    arrTask: string[] ;
 }
 
 export const initialState: TaskState = {
@@ -31,7 +31,7 @@ export const taskReducer = createReducer(
     })),
     on(editTask, (state,{index, upadateTask}) =>({
         ...state,
-        // arrTask: state.arrTask[index]
+        arrTask: state.arrTask.map(item => item === state.arrTask[index] ? upadateTask : item)
     }))
 );
 
