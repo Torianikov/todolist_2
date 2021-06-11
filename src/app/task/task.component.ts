@@ -47,4 +47,8 @@ export class TaskComponent implements OnInit {
     this.store.dispatch(editTask({index:index, upadateTask: item}))
   }
 
+  reverse(){
+    
+  }
+
 }

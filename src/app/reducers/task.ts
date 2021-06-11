@@ -4,9 +4,10 @@ export const addTask = createAction('[TASK] add new action', props<{textNewTask:
 export const clear = createAction('[TASK] clear');
 export const deleteTask = createAction('[TASK] delete task', props<{index: number}>());
 export const editTask = createAction('[Task] edit task', props<{index: number, upadateTask: string}>());
+// export const reverseTask = createAction()
 
 export interface TaskState{
-    arrTask: string[] ;
+    arrTask: string[];
 }
 
 export const initialState: TaskState = {
