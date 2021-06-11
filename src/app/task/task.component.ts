@@ -1,6 +1,7 @@
+
 import { Component, OnInit, Renderer2, ElementRef, ViewChild,  } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { addTask, clear, deleteTask, editTask, taskSelector } from '../reducers/task';
+import { addTask, clear, deleteTask, editTask, taskSelector, executionSelector } from '../reducers/task';
 
 @Component({
   selector: 'app-task',
@@ -10,8 +11,12 @@ import { addTask, clear, deleteTask, editTask, taskSelector } from '../reducers/
 export class TaskComponent implements OnInit {
 
   textNewTask: string;
+
   arrTask$ = this.store.select(taskSelector);
-  item:string;
+  execuion$ = this.store.select(executionSelector);
+
+
+  execuionClient: string;
 
   @ViewChild('container')
   private container: ElementRef;
@@ -24,13 +29,16 @@ export class TaskComponent implements OnInit {
 
   add(){
 
-    this.store.dispatch(addTask({textNewTask: this.textNewTask}));
+    this.store.dispatch(addTask({textNewTask: this.textNewTask, executionClient: this.execuionClient }));
+    this.textNewTask = '';
+    console.log(this.arrTask$)
 
   }
 
   clear(){
 
     this.store.dispatch(clear());
+    this.textNewTask = '';
 
   }
 
@@ -40,15 +48,17 @@ export class TaskComponent implements OnInit {
    
   }
 
-  edit(index, item){
+  edit(index, item, b1, b2, b3){
     
-    console.log(index + " " + item);
+    let upadateExecution;
 
-    this.store.dispatch(editTask({index:index, upadateTask: item}))
+    if(b1) upadateExecution = 'not_performed';
+    if(b2) upadateExecution = 'doing';
+    if(b3) upadateExecution = 'done';
+
+    this.store.dispatch(editTask({index:index, upadateTask: item, upadateExecution: upadateExecution  }))
   }
 
-  reverse(){
-    
-  }
+  
 
 }

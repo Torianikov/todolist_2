@@ -11,3 +11,12 @@ input{
     flex-grow: 1;
 }
 
+.execution{
+    padding-top: 3% ;
+    padding-bottom: 3%;
+}
+
+.a{
+    display: flex;
+}
+
